@@ -5,12 +5,11 @@ metadata:
     app: vote
   name: vote
 spec:
-  type: NodePort
+  type: LoadBalancer       # 1. Changed from NodePort
   ports:
   - name: "vote-service"
-    port: 8080
-    targetPort: 80
-    nodePort: 31000
+    port: 8080             # The port you will open in your browser
+    targetPort: 80         # Points to the containerPort 80 in your deployment
+                           # 2. Removed the nodePort: 31000 line entirely
   selector:
     app: vote
-  

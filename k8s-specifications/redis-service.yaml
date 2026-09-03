@@ -2,14 +2,14 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: redis
-  name: redis
+    app: result
+  name: result
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
-  - name: "redis-service"
-    port: 6379
-    targetPort: 6379
+  - name: "result-service"
+    port: 80               # We listen on standard HTTP port 80 externally
+    targetPort: 80         # Points to port 80 inside your container
   selector:
-    app: redis
-  
+    app: result
+
